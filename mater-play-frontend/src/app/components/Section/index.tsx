@@ -2,7 +2,7 @@ import { Box, Container, Stack, Typography } from "@mui/material";
 import MovieCard from "../MovieCard";
 import { useEffect, useState } from "react";
 import { IMovie } from "../../@libs/types";
-import { MovieService } from "../../services/movie-service";
+import { MovieService } from "../../services/movies-service";
 
 
 

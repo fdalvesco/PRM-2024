@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import HighLightSection from "../../components/HighlightSection"
-import Section from "../../components/Section"
+import Section from "../../components/Section";
 import { ICategory } from "../../@libs/types";
 import { CategoryService } from "../../services/category-service";
+import HighLightSection from "../../components/HighlightSection/Index";
 
 function HomePage() {
 

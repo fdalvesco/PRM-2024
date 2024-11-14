@@ -17,12 +17,13 @@ function Section({
 
     useEffect(() => {
         //Executa o que está aqui dentro quando carrega o componente
-        if (category.id) {
-        MovieService.getByCategoryId(category.id)
-        .then(result => {
-            setMovies(result)
-        });
-    }
+
+        if(category.id){
+            MovieService.getByCategoryId(category.id)
+            .then(result => {
+                setMovies(result)
+            });
+        }
 
     }, []);
 
@@ -48,7 +49,7 @@ function Section({
                     }}
                 >
                     {movies.map(item => (
-                       <MovieCard key={item.id} poster={'assets/'+item.poster}/> 
+                       <MovieCard key={item.id} movie={item}/> 
                     )) }
 
                 </Stack>

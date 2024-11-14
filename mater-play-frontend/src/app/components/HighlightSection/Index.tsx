@@ -1,13 +1,37 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { MovieService } from "../../services/movies-service";
+import { IMovie } from "../../@libs/types";
 
 function HighLightSection() {
+
+    const params = useParams();
+
+    const [movie, setMovie] = useState<IMovie>({} as IMovie);
+
+    useEffect(() => {
+
+        const movieId = (params.id) ? (params.id) : 'b85f205a-926b-463a-9719-10af6c9b38ea'
+
+
+        MovieService.getMoviesById(movieId)
+        .then(result => {
+        if(result) setMovie(result)
+        })
+        .catch(error => {
+        console.log("PAU: ", error)
+        })  
+        
+    }, [params]);
+
     return (
         <Box>
             <Container>
                 <Stack
                     direction="row"
                 >
-                    <img src="assets/house-of-dragons-poster.jpg"/>
+                    <img src={`assets/${movie.poster}`}/>
                     <Stack
                         sx={{
                             display: 'flex',
@@ -19,7 +43,7 @@ function HighLightSection() {
                         <Typography
                             variant="h4"
                         >
-                            A casa do dragão
+                            {movie.title}
                         </Typography>
                         <Typography
                             variant="subtitle2"
@@ -32,7 +56,7 @@ function HighLightSection() {
                                     marginRight: '0.3rem'
                                 }}
                             >
-                                16
+                                {movie.ageRating}
                             </span>    
                             Aventura, Fantasia, Ação
                         </Typography>
@@ -43,7 +67,7 @@ function HighLightSection() {
                                 marginBottom: '0.5rem'
                             }}
                         >
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum illum ipsa eos sunt a repellendus nesciunt odio aliquam doloremque. Officiis possimus labore placeat eligendi dolore, deleniti mollitia inventore maxime quisquam.
+                            {movie.description}
                         </Typography>
                         <Stack
                             gap={1}

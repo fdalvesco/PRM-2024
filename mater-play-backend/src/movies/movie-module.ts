@@ -5,10 +5,13 @@ import { MovieService } from "./movie-service";
 import { MovieController } from "./movie-controller";
 import { Category } from "src/categories/category-entity";
 import { Genre } from "src/genres/genre-entity";
+import { SupabaseModule } from "src/@libs/supabase/supabase.module";
 
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Category, Movie, Genre])],
+    imports: [TypeOrmModule.forFeature([Category, Movie, Genre]),
+    SupabaseModule,
+],
     providers: [MovieService],
     controllers: [MovieController]
 })
